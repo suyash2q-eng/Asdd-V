@@ -1,0 +1,40 @@
+PRACTICAL 7
+===========
+AIM:
+To monitor system metrics using Grafana with Prometheus as the data source.
+
+PREREQUISITE:
+- Docker installed (or Grafana and Prometheus installed directly).
+
+STEPS:
+1. Install and start Grafana using Docker:
+      docker run -d -p 3000:3000 --name grafana grafana/grafana
+2. Install and start Prometheus:
+   - Create prometheus.yml:
+        global:
+          scrape_interval: 15s
+        scrape_configs:
+          - job_name: 'prometheus'
+            static_configs:
+              - targets: ['localhost:9090']
+   - Run it:
+        docker run -d -p 9090:9090 --name prometheus -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+   - Check http://localhost:9090
+3. Open Grafana in the browser:
+      http://localhost:3000
+4. Log in with username admin and password admin (set a new password when asked).
+5. Go to Connections -> Data sources -> "Add data source" -> select "Prometheus".
+6. Set the URL:
+      http://localhost:9090
+   (If both run in Docker use http://host.docker.internal:9090)
+7. Click "Save & test". The message "Successfully queried the Prometheus API" appears.
+8. Go to Dashboards -> New -> "New dashboard" -> "Add visualization".
+9. Select the Prometheus data source and enter a query, e.g.:
+      up
+      or  rate(prometheus_http_requests_total[5m])
+10. Choose the panel type (Time series / Gauge), give the panel a title and click "Apply".
+11. Click "Save dashboard", name it "Monitoring Dashboard" and save.
+12. Set the auto refresh (e.g. 5s) at the top right and observe the live metrics.
+
+RESULT:
+Grafana was connected to Prometheus and a dashboard was created to monitor live metrics.

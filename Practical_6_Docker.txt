@@ -1,0 +1,48 @@
+PRACTICAL 6
+===========
+AIM:
+To build a Docker image from a Dockerfile and run it as a container.
+
+PREREQUISITE:
+- Docker installed and running.
+- (Optional) A Docker Hub account.
+
+STEPS:
+1. Check the Docker version:
+      docker --version
+2. Test the installation:
+      docker run hello-world
+3. Create a project folder:
+      mkdir DockerProject
+      cd DockerProject
+4. Create app.py with the content:
+      print("Hello Docker")
+5. Create a file named Dockerfile (no extension) with the content:
+      FROM python:3.11-slim
+      WORKDIR /app
+      COPY app.py .
+      CMD ["python", "app.py"]
+6. Build the image:
+      docker build -t myapp .
+7. List the images:
+      docker images
+8. Run the container:
+      docker run myapp
+   Output:  Hello Docker
+9. List the containers:
+      docker ps -a
+10. Run a web server container:
+      docker run -d -p 8080:80 --name web nginx
+      (open http://localhost:8080)
+11. Stop and remove the container:
+      docker stop web
+      docker rm web
+12. (Optional) Push the image to Docker Hub:
+      docker login
+      docker tag myapp <username>/myapp
+      docker push <username>/myapp
+13. Remove the image:
+      docker rmi myapp
+
+RESULT:
+A Docker image was built from a Dockerfile, run as a container and managed using Docker commands.

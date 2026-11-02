@@ -1,0 +1,65 @@
+PRACTICAL 2
+===========
+AIM:
+To perform version control operations using Git and apply collaboration workflows for software development.
+
+PREREQUISITE:
+- Git installed on the system.
+- A GitHub account.
+
+STEPS:
+1. Check the Git version:
+      git --version
+
+2. Configure the user name and email:
+      git config --global user.name "Your Name"
+      git config --global user.email "you@example.com"
+
+3. Verify the configuration:
+      git config --list
+
+4. Create the project folder and move into it:
+      mkdir GitProject
+      cd GitProject
+
+5. Initialise the repository and check the status:
+      git init
+      git status
+
+6. Create a README file:
+      echo "# GitProject" > README.md
+
+7. Stage and commit the file:
+      git add README.md
+      git commit -m "Initial commit"
+
+8. Rename the branch to main:
+      git branch -M main
+
+9. On GitHub create a new empty repository named GitProject and copy its link.
+
+10. Connect the local repository to GitHub:
+      git remote add origin <github link to repository>
+
+11. Push the code:
+      git push -u origin main
+
+COLLABORATION WORKFLOW:
+12. Create and switch to a feature branch:
+      git checkout -b feature1
+13. Edit README.md, then stage and commit:
+      git add .
+      git commit -m "Added feature1"
+14. Push the branch:
+      git push origin feature1
+15. On GitHub click "Compare & pull request" -> "Create pull request" -> "Merge pull request".
+16. Update the local main branch:
+      git checkout main
+      git pull origin main
+17. (Collaborator) Clone the repository:
+      git clone <github link to repository>
+
+NOTE: "git add" must be done before "git commit", otherwise Git shows "nothing to commit".
+
+RESULT:
+Version control operations (init, add, commit, branch, remote, push, pull) and a collaboration workflow with a pull request were performed using Git and GitHub.

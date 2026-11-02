@@ -1,0 +1,47 @@
+PRACTICAL 1
+===========
+AIM:
+To study and implement the Agile software project lifecycle using Jira with DevOps pipeline integration.
+
+PREREQUISITE:
+- A working Jira (Atlassian) login.
+- A GitHub account (for DevOps integration).
+
+STEPS:
+1. Open https://www.atlassian.com and log in to Jira with your Atlassian account.
+2. Click "Create project" -> choose the "Scrum" template -> "Use template".
+3. Choose "Team-managed project", enter the project name (e.g. DevOpsLab) and a key (e.g. DOL), then click "Create".
+
+SUMMARY:
+4. Open the "Summary" tab in the left sidebar.
+5. Observe the project overview: status summary, recent activity, issue types and priority.
+
+BOARD:
+6. Open the "Backlog" and click "Create issue" to add an Epic, then Stories and Tasks (e.g. DOL-1 Login page, DOL-2 Database design).
+7. Click "Create sprint", drag the issues into the sprint, and click "Start sprint" (set name, duration 2 weeks, start date).
+8. Open the "Board" tab. Drag cards across the columns: TO DO -> IN PROGRESS -> DONE.
+9. When all work is done, click "Complete sprint".
+
+LIST:
+10. Open the "List" tab to see all issues in a table with Key, Summary, Status, Assignee and Priority.
+11. Use the filter / sort options to filter issues by status or assignee.
+
+TIMELINE:
+12. Open the "Timeline" tab.
+13. Click "Create epic", then set start and end dates by dragging the bars.
+14. Observe the sprint and epic schedule along the timeline.
+
+ADDING COLLABORATORS:
+15. Go to Project settings -> People -> "Add people".
+16. Enter the collaborator's email, select a role (Member/Administrator) and click "Add".
+17. Assign issues to the collaborator by opening an issue and setting the "Assignee" field.
+
+DEVOPS PIPELINE INTEGRATION:
+18. Go to Apps -> "Explore more apps" -> search "GitHub for Jira" -> click "Get app".
+19. Connect your GitHub account and select the repository.
+20. Include the issue key in commit messages or branch names, e.g.:
+      git commit -m "DOL-1 added login page"
+21. Open the issue in Jira and check the "Development" panel to see the linked commits / branches.
+
+RESULT:
+The Agile project lifecycle (Summary, Board, List, Timeline, Collaborators) was studied and implemented in Jira, and GitHub was integrated for DevOps pipeline tracking.

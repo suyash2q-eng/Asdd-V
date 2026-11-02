@@ -1,0 +1,44 @@
+PRACTICAL 5
+===========
+AIM:
+To deploy and manage an application on a Kubernetes cluster using Minikube and kubectl.
+
+PREREQUISITE:
+- Docker installed and running.
+- kubectl and Minikube installed.
+
+STEPS:
+1. Verify the installations:
+      docker --version
+      kubectl version --client
+      minikube version
+2. Start the cluster:
+      minikube start --driver=docker
+3. Check the cluster and node:
+      kubectl cluster-info
+      kubectl get nodes
+4. Create a deployment:
+      kubectl create deployment nginx --image=nginx
+5. Check the deployment and pod:
+      kubectl get deployments
+      kubectl get pods
+6. Expose the deployment as a service:
+      kubectl expose deployment nginx --type=NodePort --port=80
+7. Check the service:
+      kubectl get svc
+8. Access the application:
+      minikube service nginx
+   (The browser opens with the "Welcome to nginx!" page.)
+9. Scale the deployment:
+      kubectl scale deployment nginx --replicas=3
+      kubectl get pods
+10. Check pod details and logs:
+      kubectl describe pod <pod-name>
+      kubectl logs <pod-name>
+11. Clean up:
+      kubectl delete service nginx
+      kubectl delete deployment nginx
+      minikube stop
+
+RESULT:
+An nginx application was deployed, exposed, scaled and deleted on a Kubernetes cluster using Minikube and kubectl.

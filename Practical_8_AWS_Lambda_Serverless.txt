@@ -1,0 +1,40 @@
+PRACTICAL 8
+===========
+AIM:
+To create and run a serverless function using AWS Lambda.
+
+PREREQUISITE:
+- An AWS account.
+
+STEPS:
+1. Log in to the AWS Management Console.
+2. Search for "Lambda" and open the Lambda service.
+3. Click "Create function".
+4. Select "Author from scratch".
+5. Enter:
+      Function name : HelloLambda
+      Runtime       : Python 3.12 (or latest Python 3.x)
+      Architecture  : x86_64
+      Permissions   : Create a new role with basic Lambda permissions
+6. Click "Create function".
+7. In the "Code" tab, replace the code in lambda_function.py with:
+
+      def lambda_handler(event, context):
+          return {
+              "statusCode": 200,
+              "body": "Hello from Lambda!"
+          }
+
+8. Click "Deploy".
+9. Click "Test" -> "Create new test event" -> Event name: test1 -> keep the default JSON {} -> "Save".
+10. Click "Test" again.
+11. Check the "Execution result: succeeded" panel. Output:
+      {"statusCode": 200, "body": "Hello from Lambda!"}
+12. Open the "Monitor" tab -> "View CloudWatch logs" to see the logs.
+13. (Optional) Add an API trigger:
+      Add trigger -> API Gateway -> Create an API -> HTTP API -> Security: Open -> Add.
+      Open the API endpoint URL in the browser to see "Hello from Lambda!".
+14. Delete the function after completing the practical (Actions -> Delete) to avoid charges.
+
+RESULT:
+A serverless function was created, deployed and tested successfully using AWS Lambda.

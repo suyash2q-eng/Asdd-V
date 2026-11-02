@@ -1,0 +1,53 @@
+PRACTICAL 3
+===========
+AIM:
+To install Jenkins, launch it on an available port and trigger a sample "Hello World" build.
+
+PREREQUISITE:
+- Java JDK 17 or 21 installed.
+
+STEPS:
+1. Install the prerequisite Java version (JDK 17 or 21) and verify:
+      java -version
+
+2. Install Jenkins:
+   Windows: download the Jenkins .msi installer from https://www.jenkins.io/download and run it.
+   Ubuntu:
+      sudo apt update
+      sudo apt install jenkins
+      sudo systemctl start jenkins
+      sudo systemctl status jenkins
+
+3. Connect Jenkins to an available port:
+   - The default port is 8080.
+   - If 8080 is busy, choose another port (e.g. 9090) during installation, or change it:
+       Windows: edit jenkins.xml -> --httpPort=9090
+       Linux:   edit /etc/default/jenkins -> HTTP_PORT=9090
+   - Restart the Jenkins service.
+
+4. Launch Jenkins by opening in a browser:
+      http://localhost:8080   (or the port chosen)
+
+5. Unlock Jenkins using the initial admin password:
+      Linux:   sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+      Windows: C:\Program Files\Jenkins\secrets\initialAdminPassword
+
+6. Click "Install suggested plugins".
+7. Create the first admin user and click "Save and Continue" -> "Start using Jenkins".
+
+TRIGGER A SAMPLE BUILD (HELLO WORLD):
+8. Click "New Item" -> enter the name HelloWorld -> select "Freestyle project" -> OK.
+9. Scroll to "Build Steps" -> "Add build step":
+      Linux:   Execute shell
+      Windows: Execute Windows batch command
+10. Enter the command:
+      echo "Hello World"
+11. Click "Save".
+12. Click "Build Now".
+13. Click the build number (#1) -> "Console Output".
+14. Output shown:
+      Hello World
+      Finished: SUCCESS
+
+RESULT:
+Jenkins was installed, launched on an available port, and the sample Hello World build was run successfully.

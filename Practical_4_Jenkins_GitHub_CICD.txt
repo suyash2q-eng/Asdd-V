@@ -1,0 +1,50 @@
+PRACTICAL 4
+===========
+AIM:
+To integrate Jenkins with GitHub and simulate a CI/CD pipeline for automated building and testing of a software project.
+
+PREREQUISITE:
+- Jenkins and GitHub logins.
+- Jenkins installed and running (Practical 3).
+- A GitHub repository with sample code (e.g. Hello.java).
+
+STEPS:
+1. Open Jenkins -> Manage Jenkins -> Plugins -> "Installed plugins". Make sure "Git plugin" and "GitHub plugin" are installed (otherwise install from "Available plugins" and restart).
+2. Click "New Item" -> name it CI-CD-Pipeline -> select "Freestyle project" -> OK.
+3. In "Source Code Management" select "Git".
+4. Paste the GitHub repository URL, e.g. https://github.com/<username>/<repo>.git
+5. Set "Branch Specifier" to */main. If the repository is private, add credentials (GitHub username + personal access token).
+6. In "Build Triggers" select "GitHub hook trigger for GITScm polling" (or "Poll SCM" with schedule: * * * * *).
+7. In "Build Steps" -> "Add build step" -> "Execute shell" (or batch on Windows) and enter:
+      javac Hello.java
+      java Hello
+   (For a Maven project use: mvn clean test)
+8. Click "Save", then "Build Now" to test.
+9. Webhook setup (for automatic builds):
+   - GitHub repository -> Settings -> Webhooks -> "Add webhook".
+   - Payload URL: http://<jenkins-url>/github-webhook/
+   - Content type: application/json -> select "Just the push event" -> "Add webhook".
+   - For localhost use ngrok to get a public URL:  ngrok http 8080
+10. Make a change in the code and push it:
+      git add .
+      git commit -m "Updated code"
+      git push origin main
+11. Jenkins automatically starts a new build. Open the build -> "Console Output" to see:
+      Cloning repository ... Compiling ... Testing ... Finished: SUCCESS
+
+PIPELINE (JENKINSFILE) VERSION:
+12. New Item -> "Pipeline" -> in the Pipeline section use "Pipeline script":
+
+      pipeline {
+        agent any
+        stages {
+          stage('Checkout') { steps { git branch: 'main', url: 'https://github.com/<username>/<repo>.git' } }
+          stage('Build')    { steps { sh 'javac Hello.java' } }
+          stage('Test')     { steps { sh 'java Hello' } }
+        }
+      }
+
+13. Save -> "Build Now" -> view the "Stage View" with Checkout, Build and Test stages passed.
+
+RESULT:
+Jenkins was integrated with GitHub and a CI/CD pipeline for automated building and testing was simulated successfully.
